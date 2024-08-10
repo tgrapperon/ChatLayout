@@ -156,9 +156,9 @@ struct SectionModel<Layout: ChatLayoutRepresentation> {
         if index < items.count &- 1 {
             let nextIndex = index &+ 1
             items.withUnsafeMutableBufferPointer { directlyMutableItems in
-                DispatchQueue.concurrentPerform(iterations: directlyMutableItems.count &- nextIndex) { internalIndex in
-                    directlyMutableItems[internalIndex &+ nextIndex].offsetY += heightDiff
-                }
+              for internalIndex in 0..<(directlyMutableItems.count &- nextIndex) {
+                directlyMutableItems[internalIndex &+ nextIndex].offsetY += heightDiff
+              }
             }
         }
         footer?.offsetY += heightDiff
