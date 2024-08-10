@@ -398,10 +398,8 @@ open class CollectionViewChatLayout: UICollectionViewLayout {
 
                     // Items
                     var items: ContiguousArray<ItemModel> = section.items
-                    items.withUnsafeMutableBufferPointer { directlyMutableItems in
-                        DispatchQueue.concurrentPerform(iterations: directlyMutableItems.count) { rowIndex in
-                            directlyMutableItems[rowIndex].resetSize()
-                        }
+                    for index in items.indices {
+                      items[index].resetSize()
                     }
                     section.set(items: items)
 
